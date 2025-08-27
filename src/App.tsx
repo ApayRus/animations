@@ -13,6 +13,7 @@ import DifferentCourses from './pages/DifferentCourses'
 import Upstairs from './pages/Upstairs'
 import Efficiency from './pages/Efficiency'
 import TextTypingPage from './pages/TextTyping'
+import FastWordRememberDemo from './pages/FastWordRemember/demo'
 
 const HomePage: React.FC = () => {
 	return (
@@ -59,10 +60,10 @@ const App: React.FC = () => {
 					<Route path='/exercises' element={<Exercises />} />
 					<Route path='/dictionary' element={<Dictionary />} />
 					<Route path='/grammar-rule' element={<GrammarRule />} />
-					{/* <Route
+					<Route
 						path='/fast-word-remember'
 						element={<FastWordRememberDemo />}
-					/> */}
+					/>
 					<Route
 						path='/rule-through-examples'
 						element={<RuleThroughExamples />}
