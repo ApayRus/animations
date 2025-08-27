@@ -1,0 +1,93 @@
+.container {
+	width: 100vw;
+	height: 100vh;
+	background: #f0f0f0;
+	position: relative;
+	overflow: hidden;
+}
+
+.rectangle {
+	position: absolute;
+	width: 154px;
+	height: 240px;
+	border-left: 3px solid #333333;
+	border-top: 3px solid #333333;
+	color: #333333;
+	font-family: 'Arial', sans-serif;
+	font-size: 48px;
+	font-weight: bold;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: all 0.3s ease;
+	background: rgba(100, 150, 255, 0.6);
+}
+
+.rectangle:nth-child(1) {
+	bottom: 0;
+	left: 0;
+	border-left: none;
+}
+
+.rectangle:nth-child(2) {
+	bottom: 240px;
+	left: 154px;
+}
+
+.rectangle:nth-child(3) {
+	bottom: 480px;
+	left: 308px;
+}
+
+.rectangle:nth-child(4) {
+	bottom: 720px;
+	left: 462px;
+}
+
+.rectangle:nth-child(5) {
+	bottom: 960px;
+	left: 616px;
+}
+
+.rectangle:nth-child(6) {
+	bottom: 1200px;
+	left: 770px;
+}
+
+.rectangle:nth-child(7) {
+	top: 240px;
+	left: 924px;
+}
+
+.rectangle.active {
+	background: rgba(255, 100, 100, 0.8);
+	border-left: 3px solid #cc0000;
+	border-top: 3px solid #cc0000;
+	box-shadow: 0 0 20px rgba(204, 0, 0, 0.6);
+	transform: scale(1.05);
+}
+
+.man {
+	position: absolute;
+	width: auto;
+	height: 245px;
+	z-index: 10;
+	pointer-events: none;
+	transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@keyframes glow {
+	0% {
+		box-shadow: 0 0 20px rgba(204, 0, 0, 0.6);
+	}
+	50% {
+		box-shadow: 0 0 30px rgba(204, 0, 0, 0.8), 0 0 40px rgba(204, 0, 0, 0.4);
+	}
+	100% {
+		box-shadow: 0 0 20px rgba(204, 0, 0, 0.6);
+	}
+}
+
+.rectangle.active {
+	animation: glow 1s ease-in-out infinite;
+}

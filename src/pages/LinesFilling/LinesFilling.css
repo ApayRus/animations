@@ -1,0 +1,166 @@
+.lines-filling-container {
+	width: 100vw;
+	height: 100vh;
+	max-width: 56.25vh; /* 9:16 пропорция */
+	max-height: 177.78vw; /* 16:9 пропорция */
+	background: black;
+	position: relative;
+	overflow: hidden;
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+}
+
+.lines-wrapper {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+.line-row {
+	width: 100%;
+	height: 272px; /* 1920/7 */
+	display: flex;
+	transform: translateY(100%);
+	opacity: 0;
+	transition: all 0.3s ease-out;
+}
+
+.line-row.visible {
+	transform: translateY(0);
+	opacity: 1;
+}
+
+.rectangle {
+	flex: 1;
+	height: 100%;
+	/* padding: 4px; */
+	background: linear-gradient(
+		135deg,
+		#c0c0c0,
+		#e8e8e8,
+		#a0a0a0
+	); /* Серебристый градиент для слов */
+	margin: 0 1px;
+	border-radius: 2px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	opacity: 0;
+	transform: scale(0.8) translateX(-100%);
+	transition: all 0.3s ease-out;
+	padding-block: 3px;
+}
+
+.rectangle.rule {
+	background: linear-gradient(
+		135deg,
+		#ffd700,
+		#ffed4e,
+		#daa520
+	); /* Золотой градиент для правил */
+}
+
+.rectangle.visible {
+	opacity: 1;
+	transform: scale(1) translateX(0);
+}
+
+.rectangle:hover {
+	transform: scale(1.05);
+}
+
+.label {
+	color: white;
+	font-size: 1.9vh;
+	font-weight: bold;
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+	text-align: center;
+	padding: 2px;
+	word-break: break-word;
+	line-height: 0.8;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.letter {
+	display: block;
+	margin: 0 0;
+	color: #2c3e50; /* Темно-серый цвет для букв на серебристом фоне */
+	text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.number {
+	display: block;
+	margin: 0.5vh 0 0 0;
+	font-size: 1.9vh;
+	color: #e74c3c; /* Красный цвет для цифр */
+	font-weight: 900;
+	text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.rectangle.rule .letter {
+	color: #8b4513; /* Темно-коричневый цвет для букв на золотом фоне */
+	text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.9);
+}
+
+.rectangle.rule .number {
+	color: #e74c3c; /* Темно-красный цвет для цифр на золотом фоне */
+	text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.9);
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+	.label {
+		font-size: 12px;
+	}
+
+	.letter {
+		margin: 1px 0;
+		color: #2c3e50;
+		text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+	}
+
+	.number {
+		font-size: 10px;
+		margin: 2px 0 0 0;
+		color: #e74c3c;
+		font-weight: 900;
+		text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+	}
+
+	.rectangle {
+		margin: 0 0.5px;
+	}
+}
+
+/* Адаптивность для очень маленьких экранов */
+@media (max-width: 480px) {
+	.label {
+		font-size: 10px;
+	}
+
+	.letter {
+		margin: 0.8px 0;
+		color: #2c3e50;
+		text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+	}
+
+	.number {
+		font-size: 8px;
+		margin: 1.5px 0 0 0;
+		color: #e74c3c;
+		font-weight: 900;
+		text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+	}
+
+	.rectangle {
+		margin: 0 0.25px;
+	}
+}

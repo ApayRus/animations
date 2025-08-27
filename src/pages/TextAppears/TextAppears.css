@@ -1,0 +1,132 @@
+.text-appears-container {
+	width: 100vw;
+	height: 100vh;
+	background: linear-gradient(135deg, #f5f5dc 0%, #faf0e6 50%, #f5e6d3 100%);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+	position: relative;
+	max-width: 1080px;
+	max-height: 1920px;
+	margin: 0 auto;
+	aspect-ratio: 9/16;
+}
+
+.text-appears-container::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: radial-gradient(
+		circle at center,
+		transparent 0%,
+		rgba(0, 0, 0, 0.05) 100%
+	);
+	pointer-events: none;
+}
+
+.text-content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 2rem;
+	z-index: 1;
+	width: 100%;
+	height: 100%;
+}
+
+.text-line {
+	font-size: 12rem;
+	font-weight: 700;
+	text-align: center;
+	opacity: 0;
+	transform: translateY(30px) scale(0.9);
+	transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+	text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+	letter-spacing: 2px;
+	font-family: 'Doulos SIL', serif;
+	position: relative;
+	width: 100%;
+	max-width: 100vw;
+	word-wrap: break-word;
+	padding: 0 2rem;
+}
+
+.text-line.active {
+	opacity: 1;
+	transform: translateY(0) scale(1);
+}
+
+.text-line.visible {
+	opacity: 1;
+	transform: translateY(0) scale(1);
+}
+
+/* Адаптивность для экрана 9:16 */
+@media (max-width: 1080px) {
+	.text-appears-container {
+		width: 100vw;
+		height: 100vh;
+		max-width: none;
+		max-height: none;
+		aspect-ratio: auto;
+	}
+
+	.text-line {
+		font-size: 12rem;
+		letter-spacing: 1px;
+		width: 100%;
+		max-width: 100vw;
+		padding: 0 1rem;
+	}
+
+	.text-content {
+		gap: 1.5rem;
+	}
+}
+
+/* Для очень маленьких экранов */
+@media (max-width: 768px) {
+	.text-line {
+		font-size: 4rem;
+		width: 100%;
+		max-width: 100vw;
+		padding: 0 0.5rem;
+	}
+}
+
+/* Эффект частиц на фоне */
+.text-appears-container::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-image: radial-gradient(
+			circle at 20% 80%,
+			rgba(0, 0, 0, 0.03) 0%,
+			transparent 50%
+		),
+		radial-gradient(circle at 80% 20%, rgba(0, 0, 0, 0.03) 0%, transparent 50%),
+		radial-gradient(circle at 40% 40%, rgba(0, 0, 0, 0.02) 0%, transparent 50%);
+	animation: float 20s ease-in-out infinite;
+	pointer-events: none;
+}
+
+@keyframes float {
+	0%,
+	100% {
+		transform: translateY(0px) rotate(0deg);
+	}
+	33% {
+		transform: translateY(-20px) rotate(1deg);
+	}
+	66% {
+		transform: translateY(10px) rotate(-1deg);
+	}
+}

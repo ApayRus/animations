@@ -1,0 +1,85 @@
+.container {
+	width: 100vw;
+	height: 100vh;
+	background: #f5f5f5;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 40px;
+	box-sizing: border-box;
+}
+
+.content {
+	max-width: 1200px;
+	width: 100%;
+	background: white;
+	border-radius: 8px;
+	padding: 60px;
+	height: 95vh;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+	font-size: 5rem;
+	font-weight: bold;
+	color: #333;
+	margin-bottom: 50px;
+	text-align: center;
+}
+
+.text {
+	font-size: 4.7rem;
+	line-height: 1.5;
+	color: #333;
+	text-align: justify;
+	min-height: 400px;
+}
+
+.word {
+	display: inline-block;
+	margin-right: 12px;
+	opacity: 0;
+	animation: wordAppear 0.4s ease-out forwards;
+	font-size: 4rem;
+	color: #333;
+	font-weight: normal;
+	text-decoration: none;
+	text-transform: none;
+}
+
+@keyframes wordAppear {
+	from {
+		opacity: 0;
+		transform: translateY(15px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.currentWord {
+	color: #2a5298;
+	font-weight: 600;
+	transform: scale(1.05);
+}
+
+.cursor {
+	display: inline-block;
+	color: #2a5298;
+	font-weight: bold;
+	font-size: 4rem;
+	animation: cursorBlink 1s infinite;
+	margin-left: 4px;
+}
+
+@keyframes cursorBlink {
+	0%,
+	50% {
+		opacity: 1;
+	}
+	51%,
+	100% {
+		opacity: 0;
+	}
+}

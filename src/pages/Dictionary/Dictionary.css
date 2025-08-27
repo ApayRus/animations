@@ -1,0 +1,217 @@
+.dictionary-container {
+	width: 1080px;
+	height: 1920px;
+	background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+	position: relative;
+	overflow: hidden;
+	font-family: 'Times New Roman', serif;
+	padding: 40px;
+	box-sizing: border-box;
+}
+
+.dictionary-text {
+	background: rgba(255, 255, 255, 0.95);
+	padding: 80px;
+	border-radius: 15px;
+	box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	position: relative;
+	z-index: 1;
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
+	line-height: 2;
+	/* Размытие всего текста */
+	filter: blur(1px);
+	transition: filter 0.3s ease;
+}
+
+.dictionary-text p {
+	margin: 0;
+	/* font-size: 48px; */
+	color: #2c3e50;
+	text-align: left;
+	text-align: justify;
+}
+
+.word {
+	font-weight: bold;
+	font-size: 72px;
+	color: #2c3e50;
+	text-decoration: underline;
+	text-decoration-color: #3498db;
+	text-decoration-thickness: 4px;
+	text-transform: uppercase;
+}
+
+.part-of-speech {
+	font-style: italic;
+	color: #7f8c8d;
+	/* font-size: 42px; */
+	margin-left: 15px;
+}
+
+.examples {
+	/* font-size: 100px; */
+	color: #34495e;
+	font-style: italic;
+	display: block;
+	margin-top: 30px;
+	line-height: 1.8;
+}
+
+/* Глаз вместо лупы */
+.eye-magnifier {
+	position: absolute;
+	width: 250px;
+	height: 250px;
+	pointer-events: none;
+	z-index: 10;
+	transition: all 0.1s ease;
+}
+
+.eye-outer {
+	width: 220px;
+	height: 150px;
+	border-radius: 50%;
+	background: rgba(255, 255, 255, 0.3);
+	border: 6px solid rgba(52, 152, 219, 0.8);
+	box-shadow: 0 0 40px rgba(0, 0, 0, 0.4),
+		inset 0 0 30px rgba(255, 255, 255, 0.2);
+	position: relative;
+	overflow: hidden;
+	/* Убираем размытие под глазом */
+	filter: blur(0px);
+	backdrop-filter: blur(0px);
+}
+
+.eye-inner {
+	width: 180px;
+	height: 120px;
+	border-radius: 50%;
+	background: rgba(255, 255, 255, 0.2);
+	border: 3px solid rgba(52, 152, 219, 0.6);
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.1);
+	backdrop-filter: blur(0px);
+}
+
+.eyelid {
+	width: 220px;
+	height: 40px;
+	background: rgba(248, 249, 250, 0.3);
+	border-radius: 50% 50% 0 0;
+	position: absolute;
+	top: -20px;
+	left: 0;
+	border: 6px solid rgba(52, 152, 219, 0.8);
+	border-bottom: none;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Эффект четкости под глазом */
+.eye-magnifier::before {
+	content: '';
+	position: absolute;
+	top: -75px;
+	left: -75px;
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+	background: transparent;
+	box-shadow: inset 0 0 0 1000px rgba(255, 255, 255, 0.1);
+	pointer-events: none;
+	z-index: -1;
+}
+
+/* Анимация для имитации моргания */
+@keyframes blink {
+	0%,
+	90%,
+	100% {
+		transform: translateY(-50%) scaleY(1);
+	}
+	95% {
+		transform: translateY(-50%) scaleY(0.1);
+	}
+}
+
+.eyelid {
+	animation: blink 4s ease-in-out infinite;
+}
+
+/* Анимация для имитации поиска */
+@keyframes eyeGlow {
+	0%,
+	100% {
+		box-shadow: 0 0 40px rgba(0, 0, 0, 0.4),
+			inset 0 0 30px rgba(255, 255, 255, 0.8);
+	}
+	50% {
+		box-shadow: 0 0 50px rgba(52, 152, 219, 0.7),
+			inset 0 0 30px rgba(255, 255, 255, 0.9);
+	}
+}
+
+.eye-outer {
+	animation: eyeGlow 2s ease-in-out infinite;
+}
+
+/* Дополнительные эффекты для реалистичности */
+.dictionary-container::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: radial-gradient(
+			circle at 20% 80%,
+			rgba(52, 152, 219, 0.1) 0%,
+			transparent 50%
+		),
+		radial-gradient(
+			circle at 80% 20%,
+			rgba(155, 89, 182, 0.1) 0%,
+			transparent 50%
+		);
+	pointer-events: none;
+	z-index: 0;
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 1200px) {
+	.dictionary-container {
+		width: 100%;
+		height: auto;
+		min-height: 100vh;
+		padding: 20px;
+		font-size: 43px;
+	}
+
+	.dictionary-text {
+		padding: 50px;
+		margin: 0;
+	}
+
+	.dictionary-text p {
+		/* font-size: 50px; */
+		line-height: 1;
+	}
+
+	.word {
+		/* font-size: 50px; */
+	}
+
+	.part-of-speech {
+		/* font-size: 50px; */
+	}
+
+	.examples {
+		/* font-size: 50px; */
+		line-height: 1;
+	}
+}

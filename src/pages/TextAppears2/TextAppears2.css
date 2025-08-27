@@ -1,0 +1,237 @@
+.text-appears2-container {
+	width: 1080px;
+	height: 1920px;
+	background: linear-gradient(135deg, #f5f5dc 0%, #faf0e6 50%, #f5e6d3 100%);
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+	position: relative;
+	margin: 0 auto;
+	box-shadow: 0 0 50px rgba(0, 0, 0, 0.2);
+}
+
+.text-appears2-container::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: radial-gradient(
+			circle at 30% 70%,
+			rgba(139, 69, 19, 0.03) 0%,
+			transparent 50%
+		),
+		radial-gradient(
+			circle at 70% 30%,
+			rgba(160, 82, 45, 0.03) 0%,
+			transparent 50%
+		),
+		radial-gradient(
+			circle at 50% 50%,
+			rgba(205, 133, 63, 0.02) 0%,
+			transparent 70%
+		);
+	pointer-events: none;
+}
+
+.text-content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 1.5rem;
+	z-index: 2;
+	width: 100%;
+	height: 100%;
+	padding: 2rem;
+}
+
+.text-part {
+	font-size: 8rem;
+	font-weight: 800;
+	text-align: center;
+	opacity: 0;
+	transform: translateY(50px) scale(0.8);
+	transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+	text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.1);
+	letter-spacing: 3px;
+	font-family: 'Arial', sans-serif;
+	position: relative;
+	width: 100%;
+	max-width: 1000px;
+	word-wrap: break-word;
+	line-height: 1.2;
+}
+
+.text-part.active {
+	opacity: 1;
+	transform: translateY(0) scale(1);
+	animation: textGlow 2s ease-in-out infinite alternate;
+}
+
+.text-part.visible {
+	opacity: 1;
+	transform: translateY(0) scale(1);
+}
+
+@keyframes textGlow {
+	0% {
+		text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.1);
+	}
+	100% {
+		text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), 0 0 30px rgba(0, 0, 0, 0.2),
+			0 0 40px rgba(0, 0, 0, 0.1);
+	}
+}
+
+/* Анимированные частицы */
+.particles {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+	z-index: 1;
+}
+
+.particle {
+	position: absolute;
+	width: 4px;
+	height: 4px;
+	background: rgba(37, 99, 235, 0.6);
+	border-radius: 50%;
+	animation: floatParticle linear infinite;
+}
+
+@keyframes floatParticle {
+	0% {
+		transform: translateY(0px) translateX(0px);
+		opacity: 0;
+	}
+	10% {
+		opacity: 1;
+	}
+	90% {
+		opacity: 1;
+	}
+	100% {
+		transform: translateY(-100px) translateX(20px);
+		opacity: 0;
+	}
+}
+
+/* Специальные эффекты для разных частей текста */
+.text-part:nth-child(1) {
+	/* 100 уроков */
+	animation-delay: 0s;
+}
+
+.text-part:nth-child(2) {
+	/* = */
+	font-size: 6rem;
+	animation-delay: 0.5s;
+}
+
+.text-part:nth-child(3) {
+	/* 1000 слов */
+	animation-delay: 1s;
+}
+
+.text-part:nth-child(4) {
+	/* + */
+	font-size: 6rem;
+	animation-delay: 1.5s;
+}
+
+.text-part:nth-child(5) {
+	/* 100 правил */
+	animation-delay: 2s;
+}
+
+.text-part:nth-child(6) {
+	/* = */
+	font-size: 6rem;
+	animation-delay: 2.5s;
+}
+
+.text-part:nth-child(7) {
+	/* уверенное владение языком */
+	font-size: 6rem;
+	animation-delay: 3s;
+	line-height: 1.3;
+}
+
+/* Дополнительные эффекты при появлении */
+.text-part.active::before {
+	content: '';
+	position: absolute;
+	top: -10px;
+	left: -10px;
+	right: -10px;
+	bottom: -10px;
+	background: radial-gradient(
+		circle,
+		rgba(139, 69, 19, 0.1) 0%,
+		transparent 70%
+	);
+	border-radius: 20px;
+	animation: pulse 1s ease-out;
+}
+
+@keyframes pulse {
+	0% {
+		transform: scale(0.8);
+		opacity: 0.8;
+	}
+	100% {
+		transform: scale(1.2);
+		opacity: 0;
+	}
+}
+
+/* Адаптация для экрана 1080x1920 */
+@media (max-width: 1080px) {
+	.text-appears2-container {
+		width: 100vw;
+		height: 100vh;
+		max-width: 1080px;
+		max-height: 1920px;
+	}
+}
+
+/* Эффект мерцания звезд на фоне */
+.text-appears2-container::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-image: radial-gradient(
+			2px 2px at 20px 30px,
+			rgba(139, 69, 19, 0.2),
+			transparent
+		),
+		radial-gradient(2px 2px at 40px 70px, rgba(160, 82, 45, 0.15), transparent),
+		radial-gradient(1px 1px at 90px 40px, rgba(139, 69, 19, 0.2), transparent),
+		radial-gradient(1px 1px at 130px 80px, rgba(160, 82, 45, 0.15), transparent),
+		radial-gradient(2px 2px at 160px 30px, rgba(139, 69, 19, 0.2), transparent);
+	background-repeat: repeat;
+	background-size: 200px 100px;
+	animation: twinkle 4s ease-in-out infinite;
+	pointer-events: none;
+}
+
+@keyframes twinkle {
+	0%,
+	100% {
+		opacity: 0.3;
+	}
+	50% {
+		opacity: 1;
+	}
+}

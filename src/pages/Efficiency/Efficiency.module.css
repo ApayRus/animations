@@ -1,0 +1,54 @@
+.container {
+	width: 100vw;
+	height: 100vh;
+	position: relative;
+	overflow: hidden;
+}
+
+.svg {
+	display: block;
+}
+
+.arrowContainer {
+	transform-origin: center;
+	animation: arrowMovement 4s ease-in-out infinite;
+}
+
+.arrow {
+	transform-origin: center;
+}
+
+@keyframes arrowMovement {
+	/* 0-50%: Движение от startAngle до endAngle */
+	0% {
+		transform: rotate(var(--start-angle, -90deg));
+	}
+	50% {
+		transform: rotate(var(--end-angle, 90deg));
+	}
+	/* 50-100%: Длительные колебания в конечной части */
+	60% {
+		transform: rotate(calc(var(--end-angle, 90deg) - 8deg));
+	}
+	70% {
+		transform: rotate(calc(var(--end-angle, 90deg) + 6deg));
+	}
+	75% {
+		transform: rotate(calc(var(--end-angle, 90deg) - 4deg));
+	}
+	80% {
+		transform: rotate(calc(var(--end-angle, 90deg) + 7deg));
+	}
+	85% {
+		transform: rotate(calc(var(--end-angle, 90deg) - 3deg));
+	}
+	90% {
+		transform: rotate(calc(var(--end-angle, 90deg) + 5deg));
+	}
+	95% {
+		transform: rotate(calc(var(--end-angle, 90deg) - 2deg));
+	}
+	100% {
+		transform: rotate(var(--end-angle, 90deg));
+	}
+}
