@@ -19,6 +19,14 @@ const SPEED_MAX = 2.5
 const SPEED_STEP = 0.05
 const RANDOM_SEED = 0xdecafc0
 const STORAGE_KEY = 'alphabets-active-characters'
+const DEFAULT_ROTATION_INTERVAL = 3000
+const ROTATION_INTERVAL_MIN = 1000
+const ROTATION_INTERVAL_MAX = 15000
+const ROTATION_INTERVAL_STEP = 500
+const DEFAULT_ROTATION_FRACTION = 0.5
+const ROTATION_FRACTION_MIN = 0.05
+const ROTATION_FRACTION_MAX = 1
+const ROTATION_FRACTION_STEP = 0.05
 
 type ActiveCharactersMap = Record<string, string[]>
 
@@ -1946,6 +1954,12 @@ const loadInitialActiveCharacters = (): ActiveCharactersMap => {
 
 const AlphabetsCollagePage: React.FC = () => {
 	const [speedMultiplier, setSpeedMultiplier] = useState(SPEED_MAX)
+	const [rotationInterval, setRotationInterval] = useState(
+		DEFAULT_ROTATION_INTERVAL
+	)
+	const [rotationFraction, setRotationFraction] = useState(
+		DEFAULT_ROTATION_FRACTION
+	)
 	const [activeCharacters, setActiveCharacters] = useState<ActiveCharactersMap>(
 		loadInitialActiveCharacters
 	)
@@ -2022,7 +2036,7 @@ const AlphabetsCollagePage: React.FC = () => {
 				const nextVisible = [...prevVisible]
 				const nextQueue = [...currentQueue]
 				const replacements = Math.min(
-					Math.max(1, Math.floor(nextVisible.length * 0.1)),
+					Math.max(1, Math.floor(nextVisible.length * rotationFraction)),
 					nextQueue.length
 				)
 
@@ -2059,10 +2073,10 @@ const AlphabetsCollagePage: React.FC = () => {
 				setSpareCells(nextQueue)
 				return nextVisible
 			})
-		}, 3000)
+		}, rotationInterval)
 
 		return () => window.clearInterval(interval)
-	}, [spareCells.length])
+	}, [spareCells.length, rotationInterval, rotationFraction])
 
 	const totalActiveCount = useMemo(() => {
 		return Object.values(activeCharacters).reduce(
@@ -2087,13 +2101,55 @@ const AlphabetsCollagePage: React.FC = () => {
 				<section className='controls-panel' aria-label='Настройки коллажа'>
 					<div className='controls-header'>
 						<h2>Настройки</h2>
-						<SpeedControl
-							value={speedMultiplier}
-							onChange={setSpeedMultiplier}
-							min={SPEED_MIN}
-							max={SPEED_MAX}
-							step={SPEED_STEP}
-						/>
+						<div className='controls-grid'>
+							<label className='control-block'>
+								<span className='control-label'>Скорость движения</span>
+								<SpeedControl
+									value={speedMultiplier}
+									onChange={setSpeedMultiplier}
+									min={SPEED_MIN}
+									max={SPEED_MAX}
+									step={SPEED_STEP}
+								/>
+							</label>
+							<label className='control-block'>
+								<span className='control-label'>Интервал смены (мс)</span>
+								<div className='control-slider'>
+									<input
+										type='range'
+										min={ROTATION_INTERVAL_MIN}
+										max={ROTATION_INTERVAL_MAX}
+										step={ROTATION_INTERVAL_STEP}
+										value={rotationInterval}
+										onChange={event =>
+											setRotationInterval(Number(event.target.value))
+										}
+									/>
+									<span className='control-value'>
+										{rotationInterval.toLocaleString()} мс
+									</span>
+								</div>
+							</label>
+							<label className='control-block'>
+								<span className='control-label'>Доля замены</span>
+								<div className='control-slider'>
+									<input
+										type='range'
+										min={ROTATION_FRACTION_MIN}
+										max={ROTATION_FRACTION_MAX}
+										step={ROTATION_FRACTION_STEP}
+										value={rotationFraction}
+										onChange={event =>
+											setRotationFraction(Number(event.target.value))
+										}
+									/>
+									<span className='control-value'>
+										{Math.round(rotationFraction * 100)}%
+									</span>
+								</div>
+							</label>
+						</div>
+
 						<div className='selection-summary'>
 							<span>В коллаже: {displayedCount}</span>
 							<span>Выбрано: {totalActiveCount}</span>

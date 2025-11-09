@@ -8,10 +8,15 @@ interface SpeedControlProps {
 	step?: number
 }
 
-const SpeedControl: React.FC<SpeedControlProps> = ({ value, onChange, min, max, step = 0.05 }) => {
+const SpeedControl: React.FC<SpeedControlProps> = ({
+	value,
+	onChange,
+	min,
+	max,
+	step = 0.05
+}) => {
 	return (
 		<div className='speed-control'>
-			<label htmlFor='speed-slider'>Скорость движения</label>
 			<div className='slider-row'>
 				<input
 					id='speed-slider'

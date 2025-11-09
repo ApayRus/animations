@@ -237,6 +237,42 @@
 	margin: 0;
 }
 
+.controls-grid {
+	display: grid;
+	gap: clamp(16px, 2.2vmin, 24px);
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.control-block {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	color: rgba(226, 232, 240, 0.95);
+}
+
+.control-label {
+	font-weight: 600;
+	font-size: clamp(0.85rem, 1.3vw, 1rem);
+}
+
+.control-slider {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+
+.control-slider input[type='range'] {
+	flex: 1;
+	accent-color: #38bdf8;
+}
+
+.control-value {
+	min-width: 64px;
+	text-align: right;
+	font-variant-numeric: tabular-nums;
+	color: rgba(191, 219, 254, 0.95);
+}
+
 @media (max-width: 960px) {
 	.collage-layout {
 		width: 100%;
