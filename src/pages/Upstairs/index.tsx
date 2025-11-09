@@ -52,6 +52,7 @@ const Upstairs: React.FC = () => {
 		}, 1000)
 
 		return () => clearInterval(interval)
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [isStarted])
 
 	return (

@@ -28,6 +28,7 @@ const GrammarRule = () => {
 
 			return () => clearTimeout(timer)
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [currentTitleWordIndex, titleWords.length])
 
 	// Анимация основного текста (начинается после заголовка)
@@ -48,6 +49,7 @@ const GrammarRule = () => {
 		) {
 			setIsComplete(true)
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [currentTitleWordIndex, currentWordIndex, words.length, titleWords.length])
 
 	return (

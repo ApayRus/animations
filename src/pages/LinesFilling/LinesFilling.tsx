@@ -43,6 +43,7 @@ const LinesFilling: React.FC<LinesFillingProps> = ({
 		}, 100)
 
 		return () => clearTimeout(timer)
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [labels])
 
 	return (

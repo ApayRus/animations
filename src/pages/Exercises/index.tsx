@@ -3,7 +3,6 @@ import './Exercises.css'
 
 const Exercises = () => {
 	const [currentExercise, setCurrentExercise] = useState(-1)
-	const [isVisible, setIsVisible] = useState(false)
 
 	const exercises = [
 		{
@@ -31,7 +30,6 @@ const Exercises = () => {
 
 	useEffect(() => {
 		const timer = setTimeout(() => {
-			setIsVisible(true)
 			setCurrentExercise(0)
 		}, 1000)
 

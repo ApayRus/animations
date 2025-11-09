@@ -3,7 +3,6 @@ import './TextAppears.css'
 
 const TextAppears = () => {
 	const [currentIndex, setCurrentIndex] = useState(-1)
-	const [isVisible, setIsVisible] = useState(false)
 
 	const texts = [
 		{ text: 'young', color: '#2563eb' },
@@ -14,7 +13,6 @@ const TextAppears = () => {
 
 	useEffect(() => {
 		const timer = setTimeout(() => {
-			setIsVisible(true)
 			// Начинаем с первой строки после задержки
 			setCurrentIndex(0)
 		}, 1000)

@@ -24,7 +24,6 @@ const Gauge: React.FC<GaugeProps> = ({
 }) => {
 	const centerX = window.innerWidth / 2
 	const centerY = window.innerHeight / 2
-	const strokeWidth = 10
 
 	// Создаем 10 секторов по всей окружности (от 0° до 360°)
 	const createSectorPath = (startAngle: number, endAngle: number) => {

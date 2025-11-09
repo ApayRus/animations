@@ -3,7 +3,6 @@ import './TextAppears2.css'
 
 const TextAppears2 = () => {
 	const [currentIndex, setCurrentIndex] = useState(-1)
-	const [isVisible, setIsVisible] = useState(false)
 
 	const textParts = [
 		{ text: '100 уроков', color: '#2563eb', delay: 0 },
@@ -17,7 +16,6 @@ const TextAppears2 = () => {
 
 	useEffect(() => {
 		const timer = setTimeout(() => {
-			setIsVisible(true)
 			setCurrentIndex(0)
 		}, 1000)
 
@@ -33,6 +31,7 @@ const TextAppears2 = () => {
 
 			return () => clearTimeout(timer)
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [currentIndex, textParts.length])
 
 	return (

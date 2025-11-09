@@ -21,10 +21,10 @@ const CollageGrid: React.FC<CollageGridProps> = ({ cells, speedMultiplier }) => 
 			{cells.map((cell, index) => {
 				const style: React.CSSProperties & Record<string, string> = {
 					color: cell.color,
-					['--shift-x']: `${cell.shiftX.toFixed(2)}px`,
-					['--shift-y']: `${cell.shiftY.toFixed(2)}px`,
-					['--drift-duration']: `${(cell.duration / speedMultiplier).toFixed(2)}s`,
-					['--drift-delay']: `${(cell.delay / speedMultiplier).toFixed(2)}s`,
+					'--shift-x': `${cell.shiftX.toFixed(2)}px`,
+					'--shift-y': `${cell.shiftY.toFixed(2)}px`,
+					'--drift-duration': `${(cell.duration / speedMultiplier).toFixed(2)}s`,
+					'--drift-delay': `${(cell.delay / speedMultiplier).toFixed(2)}s`,
 				}
 
 				return (
