@@ -8,7 +8,9 @@ const TextTypingPage = () => {
     <p>ЗОЛОТО правит<br />всем остальным.</p>
   `
 
-	return <TextTyping text={text} speed={200} />
+	return (
+		<TextTyping text={text} speed={200} startPauseMs={2000} endPauseMs={4000} />
+	)
 }
 
 export default TextTypingPage

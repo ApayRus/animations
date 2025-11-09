@@ -5,6 +5,9 @@ import styles from './TextTyping.module.css'
 interface TextTypingProps {
 	text: string
 	speed?: number
+	pauseMs?: number
+	startPauseMs?: number
+	endPauseMs?: number
 	textStyles?: React.CSSProperties
 	backgroundStyles?: React.CSSProperties
 }
@@ -12,6 +15,9 @@ interface TextTypingProps {
 const TextTyping: React.FC<TextTypingProps> = ({
 	text,
 	speed = 50,
+	pauseMs = 0,
+	startPauseMs,
+	endPauseMs,
 	textStyles,
 	backgroundStyles
 }) => {
@@ -39,32 +45,60 @@ const TextTyping: React.FC<TextTypingProps> = ({
 			symbols[0].classList.add(styles.caret)
 		}
 
-		const intervalId = window.setInterval(() => {
-			if (currentIndex >= chars.length) {
-				// End: clear caret and stop
-				if (symbols.length > 0) {
-					symbols[symbols.length - 1].classList.remove(styles.caret)
+		let intervalId: number | null = null
+		let endPauseId: number | null = null
+		let startPauseId: number | null = null
+
+		const startPause = Math.max(0, startPauseMs ?? pauseMs)
+		const endPause = Math.max(0, endPauseMs ?? pauseMs)
+
+		const startTyping = () => {
+			// Reserve last symbol (trailing space) for end caret blink
+			const lastRevealIndex = Math.max(0, chars.length - 1)
+
+			intervalId = window.setInterval(() => {
+				if (currentIndex >= lastRevealIndex) {
+					// Finished revealing all real characters, move caret to trailing space and pause
+					if (intervalId) window.clearInterval(intervalId)
+					// Ensure caret on trailing symbol if it exists
+					const trailingSymbol = symbols[lastRevealIndex]
+					if (trailingSymbol) trailingSymbol.classList.add(styles.caret)
+					// End pause
+					endPauseId = window.setTimeout(() => {
+						// Cleanup caret after end pause
+						symbols.forEach(el => el.classList.remove(styles.caret))
+					}, endPause)
+					return
 				}
-				window.clearInterval(intervalId)
-				return
-			}
 
-			// Reveal current char
-			animate(chars[currentIndex], { opacity: 1, duration: 1, ease: 'linear' })
+				// Reveal current char
+				animate(chars[currentIndex], {
+					opacity: 1,
+					duration: 1,
+					ease: 'linear'
+				})
 
-			// Move caret from current symbol to next
-			const currentSymbol = symbols[currentIndex]
-			if (currentSymbol) currentSymbol.classList.remove(styles.caret)
-			currentIndex += 1
-			const nextSymbol = symbols[currentIndex]
-			if (nextSymbol) nextSymbol.classList.add(styles.caret)
-		}, Math.max(1, speed))
+				// Move caret from current symbol to next
+				const currentSymbol = symbols[currentIndex]
+				if (currentSymbol) currentSymbol.classList.remove(styles.caret)
+				currentIndex += 1
+				const nextSymbol = symbols[currentIndex]
+				if (nextSymbol) nextSymbol.classList.add(styles.caret)
+			}, Math.max(1, speed))
+		}
+
+		// Start pause before typing
+		startPauseId = window.setTimeout(() => {
+			startTyping()
+		}, startPause)
 
 		return () => {
-			window.clearInterval(intervalId)
+			if (intervalId) window.clearInterval(intervalId)
+			if (startPauseId) window.clearTimeout(startPauseId)
+			if (endPauseId) window.clearTimeout(endPauseId)
 			symbols.forEach(el => el.classList.remove(styles.caret))
 		}
-	}, [text, speed])
+	}, [text, speed, pauseMs, startPauseMs, endPauseMs])
 
 	const renderTextToSymbols = (textContent: string, keyPrefix: string) => {
 		return textContent.split('').map((char, i) => (
@@ -110,6 +144,7 @@ const TextTyping: React.FC<TextTypingProps> = ({
 		return elements.map((el, elIndex) => {
 			const tagName = el.tagName.toLowerCase()
 			const className = styles[tagName] || ''
+			const isLast = elIndex === elements.length - 1
 
 			return (
 				<div key={elIndex} className={className} style={textStyles}>
@@ -118,6 +153,11 @@ const TextTyping: React.FC<TextTypingProps> = ({
 							{renderNode(child, `el-${elIndex}-${idx}-`)}
 						</React.Fragment>
 					))}
+					{isLast && (
+						<div key={`end-space`} className={styles.symbol}>
+							<span className={styles.char}>{'\u00A0'}</span>
+						</div>
+					)}
 				</div>
 			)
 		})

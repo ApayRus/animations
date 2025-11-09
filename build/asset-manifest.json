@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/static/css/main.860cdefc.css",
+    "main.js": "/static/js/main.3835bdcf.js",
+    "static/media/DoulosSIL-Regular.woff2": "/static/media/DoulosSIL-Regular.f18982b3533199432de3.woff2",
+    "index.html": "/index.html",
+    "main.860cdefc.css.map": "/static/css/main.860cdefc.css.map",
+    "main.3835bdcf.js.map": "/static/js/main.3835bdcf.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.860cdefc.css",
+    "static/js/main.3835bdcf.js"
+  ]
+}

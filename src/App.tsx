@@ -1,6 +1,6 @@
 import React from 'react'
-import LinesFillingPage from './pages/LinesFilling'
 import './App.css'
+import LinesFillingPage from './pages/LinesFilling'
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom'
 import TextAppears from './pages/TextAppears'
 import TextAppears2 from './pages/TextAppears2'
@@ -14,6 +14,7 @@ import Upstairs from './pages/Upstairs'
 import Efficiency from './pages/Efficiency'
 import TextTypingPage from './pages/TextTyping'
 import FastWordRememberDemo from './pages/FastWordRemember/demo'
+import AlphabetsCollagePage from './pages/Alphabets'
 
 const HomePage: React.FC = () => {
 	return (
@@ -43,6 +44,8 @@ const HomePage: React.FC = () => {
 				<Link to='/efficiency'>Efficiency</Link>
 				<br />
 				<Link to='/text-typing'>Text Typing</Link>
+				<br />
+				<Link to='/alphabets'>Writing Systems Collage</Link>
 			</nav>
 		</div>
 	)
@@ -72,6 +75,7 @@ const App: React.FC = () => {
 					<Route path='/upstairs' element={<Upstairs />} />
 					<Route path='/efficiency' element={<Efficiency />} />
 					<Route path='/text-typing' element={<TextTypingPage />} />
+					<Route path='/alphabets' element={<AlphabetsCollagePage />} />
 				</Routes>
 			</div>
 		</BrowserRouter>
