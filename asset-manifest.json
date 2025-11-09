@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/animations/static/css/main.aec50572.css",
+    "main.js": "/animations/static/js/main.10ec5457.js",
+    "static/media/DoulosSIL-Regular.woff2": "/animations/static/media/DoulosSIL-Regular.f18982b3533199432de3.woff2",
+    "index.html": "/animations/index.html",
+    "main.aec50572.css.map": "/animations/static/css/main.aec50572.css.map",
+    "main.10ec5457.js.map": "/animations/static/js/main.10ec5457.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.aec50572.css",
+    "static/js/main.10ec5457.js"
+  ]
+}
