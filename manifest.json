@@ -3,17 +3,17 @@
 	"name": "Animations Collection",
 	"icons": [
 		{
-			"src": "%PUBLIC_URL%/favicon.ico",
+			"src": "/favicon.ico",
 			"sizes": "64x64 32x32 24x24 16x16",
 			"type": "image/x-icon"
 		},
 		{
-			"src": "%PUBLIC_URL%/brain.png",
+			"src": "/brain.png",
 			"sizes": "192x192",
 			"type": "image/png"
 		},
 		{
-			"src": "%PUBLIC_URL%/man.png",
+			"src": "/man.png",
 			"sizes": "512x512",
 			"type": "image/png"
 		}
